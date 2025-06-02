@@ -56,3 +56,32 @@ void setStock(int stock) {
     this->stock = stock;
 }
 };
+
+
+// clase ProductoFisico (hereda de producto) - Abril Carrillo
+
+class ProductoFisico : public Producto {
+private:
+    float peso;
+
+public:
+    // const.
+    ProductoFisico(string nombre, float precio, int codigo, int stock, float peso)
+        : Producto(nombre, precio, codigo, stock) {
+        this->peso = peso;
+    }
+
+    // peso del producto físico
+    void mostrarPeso() {
+        cout << "Peso del producto: " << peso << " kg" << endl;
+    }
+
+    // get y set para peso
+    float obtenerPeso() {
+        return peso;
+    }
+
+    void setPeso(float peso) {
+        this->peso = peso;
+    }
+};
