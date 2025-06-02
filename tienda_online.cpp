@@ -38,3 +38,45 @@ public:
 	int obtenerStock() { return stock; }
 	void setStock(int stock) { this->stock = stock; }
 };
+
+// clase productofisico (hereda de Producto) - abril
+
+class ProductoFisico : public Producto {
+private:
+	float peso;
+	
+public:
+	ProductoFisico(string nombre, float precio, int codigo, int stock, float peso)
+		: Producto(nombre, precio, codigo, stock) {
+		this->peso = peso;
+	}
+	
+	void mostrarInformacion() {
+		Producto::mostrarInformacion();
+		cout << "Peso del producto: " << peso << " kg" << endl;
+	}
+	
+	float obtenerPeso() { return peso; }
+	void setPeso(float peso) { this->peso = peso; }
+};
+class ProductoDigital : public Producto {
+private:
+	float tamanoMB;
+	string formato;
+	
+public:
+	ProductoDigital(string nombre, float precio, int codigo, int stock, float tamanoMB, string formato)
+		: Producto(nombre, precio, codigo, stock), tamanoMB(tamanoMB), formato(formato) {}
+	
+	float getTamano() const { return tamanoMB; }
+	string getFormato() const { return formato; }
+	
+	void setTamano(float nuevoTamano) { tamanoMB = nuevoTamano; }
+	void setFormato(string nuevoFormato) { formato = nuevoFormato; }
+	
+	void mostrarInformacion() {
+		Producto::mostrarInformacion();
+		cout << "Tamaño: " << tamanoMB << " MB" << endl;
+		cout << "Formato: " << formato << endl;
+	}
+};
