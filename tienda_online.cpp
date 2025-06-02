@@ -115,3 +115,33 @@ public:
 	
 	string obtenerHistorial() { return historialCompras; }
 };
+// -
+// Clase Carrito -Jimena
+
+class Carrito {
+private:
+	vector<Producto> productos;
+	
+public:
+	void agregarProducto(Producto p) {
+		productos.push_back(p);
+	}
+	
+	void eliminarUltimoProducto() {
+		if (!productos.empty()) {
+			productos.pop_back();
+		}
+	}
+	
+	void mostrarCarrito() {
+		cout << "Productos en el carrito:\n";
+		for (auto p : productos) {
+			p.mostrarInformacion();
+			cout << "-------------------\n";
+		}
+	}
+	
+	vector<Producto> obtenerProductos() {
+		return productos;
+	}
+};
