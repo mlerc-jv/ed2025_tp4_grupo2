@@ -80,3 +80,38 @@ public:
 		cout << "Formato: " << formato << endl;
 	}
 };
+// -
+// Clase Cliente - Jimena
+
+class Cliente {
+private:
+	string nombre;
+	int id;
+	string historialCompras;
+	
+public:
+	Cliente(string nombre, int id) {
+		this->nombre = nombre;
+		this->id = id;
+		historialCompras = "";
+	}
+	
+	void agregarCompra(string descripcion) {
+		historialCompras += descripcion + "\n";
+	}
+	
+	void mostrarCliente() {
+		cout << "Cliente: " << nombre << endl;
+		cout << "ID: " << id << endl;
+		cout << "Historial de compras:\n" << historialCompras << endl;
+	}
+	
+	
+	string obtenerNombre() { return nombre; }
+	void setNombre(string nombre) { this->nombre = nombre; }
+	
+	int obtenerID() { return id; }
+	void setID(int id) { this->id = id; }
+	
+	string obtenerHistorial() { return historialCompras; }
+};
