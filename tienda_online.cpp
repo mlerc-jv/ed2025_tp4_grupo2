@@ -145,3 +145,37 @@ public:
 		return productos;
 	}
 };
+// -
+// Clase Pedido-Antonella
+
+class Pedido {
+private:
+	Cliente cliente;
+	vector<Producto> productos;
+	float total;
+	
+public:
+	Pedido(Cliente cliente, vector<Producto> productos)
+		: cliente(cliente), productos(productos) {
+		total = calcularTotal();
+	}
+	
+	float calcularTotal() {
+		float suma = 0;
+		for (auto p : productos) {
+			suma += p.obtenerPrecio();
+		}
+		return suma;
+	}
+	
+	void mostrarResumen() {
+		cout << "\nResumen del pedido:\n";
+		cliente.mostrarCliente();
+		cout << "\nProductos comprados:\n";
+		for (auto p : productos) {
+			p.mostrarInformacion();
+			cout << "-------------------\n";
+		}
+		cout << "Total a pagar: $" << total << endl;
+	}
+};
