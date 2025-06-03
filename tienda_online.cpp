@@ -80,7 +80,6 @@ public:
 		cout << "Formato: " << formato << endl;
 	}
 };
-// -
 // Clase Cliente - Jimena
 
 class Cliente {
@@ -115,7 +114,7 @@ public:
 	
 	string obtenerHistorial() { return historialCompras; }
 };
-// -
+
 // Clase Carrito -Jimena
 
 class Carrito {
