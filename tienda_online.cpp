@@ -145,7 +145,6 @@ public:
 		return productos;
 	}
 };
-// -
 // Clase Pedido-Antonella
 
 class Pedido {
@@ -162,7 +161,7 @@ public:
 	
 	float calcularTotal() {
 		float suma = 0;
-		for (auto p : productos) {
+		for (Producto p : productos) {
 			suma += p.obtenerPrecio();
 		}
 		return suma;
@@ -172,39 +171,10 @@ public:
 		cout << "\nResumen del pedido:\n";
 		cliente.mostrarCliente();
 		cout << "\nProductos comprados:\n";
-		for (auto p : productos) {
+		for (Producto p : productos) {
 			p.mostrarInformacion();
 			cout << "-------------------\n";
 		}
 		cout << "Total a pagar: $" << total << endl;
 	}
 };
-//-
-//main-Antonella
-
-
-int main() {
-	
-	ProductoFisico prod1("Notebook",93000.0, 101, 5, 2.5);
-	ProductoFisico prod2("Mouse", 12350.0, 102, 20, 0.2);
-	
-	
-	ProductoDigital prod3("App de peliculas", 10.0, 201, 999, 50, "PDF");
-	
-	Cliente cliente("Valentina", 13);
-	
-	Carrito carrito;
-	carrito.agregarProducto(prod1);
-	carrito.agregarProducto(prod2);
-	carrito.agregarProducto(prod3); 
-	
-	carrito.mostrarCarrito();
-	
-	Pedido pedido(cliente, carrito.obtenerProductos());
-	
-	cliente.agregarCompra("Notebook, Mouse, Archivo de películas (links)");
-	
-	pedido.mostrarResumen();
-	
-	return 0;
-}
