@@ -40,9 +40,7 @@ public:
 <<<<<<< HEAD
 };
 =======
-};
-
-// clase productofisico (hereda de Producto) - abril
+// clase productofisico Y productodigital (hereda de Producto) - abril
 
 class ProductoFisico : public Producto {
 private:
