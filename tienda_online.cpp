@@ -17,7 +17,7 @@ public:
 		this->codigo = codigo;
 		this->stock  = stock;
 	}
-
+	
 	void mostrarInformacion() { 
 		cout << "Nombre del producto: " << nombre << endl; 
 		cout << "Precio: $" << precio << endl; 
@@ -37,9 +37,9 @@ public:
 	
 	int obtenerStock() { return stock; }
 	void setStock(int stock) { this->stock = stock; }
-};
 
-// clase productofisico (hereda de Producto) - abril
+};
+// clase productofisico Y productodigital (hereda de Producto) - abril
 
 class ProductoFisico : public Producto {
 private:
@@ -115,6 +115,7 @@ public:
 	string obtenerHistorial() { return historialCompras; }
 };
 
+
 // Clase Carrito -Jimena
 
 class Carrito {
@@ -144,3 +145,67 @@ public:
 		return productos;
 	}
 };
+// -
+// Clase Pedido-Antonella
+
+class Pedido {
+private:
+	Cliente cliente;
+	vector<Producto> productos;
+	float total;
+	
+public:
+	Pedido(Cliente cliente, vector<Producto> productos)
+		: cliente(cliente), productos(productos) {
+		total = calcularTotal();
+	}
+	
+	float calcularTotal() {
+		float suma = 0;
+		for (auto p : productos) {
+			suma += p.obtenerPrecio();
+		}
+		return suma;
+	}
+	
+	void mostrarResumen() {
+		cout << "\nResumen del pedido:\n";
+		cliente.mostrarCliente();
+		cout << "\nProductos comprados:\n";
+		for (auto p : productos) {
+			p.mostrarInformacion();
+			cout << "-------------------\n";
+		}
+		cout << "Total a pagar: $" << total << endl;
+	}
+};
+//-
+//main-Antonella
+
+
+int main() {
+	
+	ProductoFisico prod1("Notebook",93000.0, 101, 5, 2.5);
+	ProductoFisico prod2("Mouse", 12350.0, 102, 20, 0.2);
+	
+	
+	ProductoDigital prod3("App de peliculas", 10.0, 201, 999, 50, "PDF");
+	
+	Cliente cliente("Valentina", 13);
+	
+	Carrito carrito;
+	carrito.agregarProducto(prod1);
+	carrito.agregarProducto(prod2);
+	carrito.agregarProducto(prod3); 
+	
+	carrito.mostrarCarrito();
+	
+	Pedido pedido(cliente, carrito.obtenerProductos());
+	
+	cliente.agregarCompra("Notebook, Mouse, Archivo de películas (links)");
+	
+	pedido.mostrarResumen();
+	
+	return 0;
+}
+>>>>>>> 4e0e196e2c152381f931239b19043b15cdddb9de
