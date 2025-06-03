@@ -37,9 +37,8 @@ public:
 	
 	int obtenerStock() { return stock; }
 	void setStock(int stock) { this->stock = stock; }
-<<<<<<< HEAD
+
 };
-=======
 // clase productofisico Y productodigital (hereda de Producto) - abril
 
 class ProductoFisico : public Producto {
