@@ -188,3 +188,35 @@ public:
 
 };
 
+//main-Antonella
+
+
+int main() {
+	
+	ProductoFisico prod1("Notebook",93000.0, 101, 23, 1.8);
+	ProductoFisico prod2("Mouse", 12350.0, 102, 17, 0.138);
+	
+	
+	ProductoDigital prod3("App de peliculas", 3246.0, 305, 9, 50, "APK");
+	ProductoDigital prod4 ("Curso de ventas - online", 48500 , 567, 8 , 34, "HTML");
+	
+	Cliente cliente("Valentina", 13);
+	
+	Carrito carrito;
+	carrito.agregarProductoFisico(prod1);
+	carrito.agregarProductoFisico(prod2);
+	carrito.agregarProductoDigital(prod3);
+	carrito.agregarProductoDigital(prod4);
+	
+	
+	carrito.mostrarCarrito();
+	
+	Pedido pedido(cliente, carrito.obtenerTodosLosProductos());
+	
+	
+	cliente.agregarCompra("Notebook, Mouse, App de peliculas,");
+	
+	pedido.mostrarResumen();
+	
+	return 0;
+}
