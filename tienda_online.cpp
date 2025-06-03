@@ -17,7 +17,7 @@ public:
 		this->codigo = codigo;
 		this->stock  = stock;
 	}
-
+	
 	void mostrarInformacion() { 
 		cout << "Nombre del producto: " << nombre << endl; 
 		cout << "Precio: $" << precio << endl; 
@@ -37,9 +37,9 @@ public:
 	
 	int obtenerStock() { return stock; }
 	void setStock(int stock) { this->stock = stock; }
-};
 
-// clase productofisico (hereda de Producto) - abril
+};
+// clase productofisico Y productodigital (hereda de Producto) - abril
 
 class ProductoFisico : public Producto {
 private:
@@ -80,7 +80,6 @@ public:
 		cout << "Formato: " << formato << endl;
 	}
 };
-// -
 // Clase Cliente - Jimena
 
 class Cliente {
@@ -115,36 +114,45 @@ public:
 	
 	string obtenerHistorial() { return historialCompras; }
 };
-// -
+
 // Clase Carrito -Jimena
 
 class Carrito {
 private:
-	vector<Producto> productos;
+	vector<ProductoFisico> productosFisicos;
+	vector<ProductoDigital> productosDigitales;
 	
 public:
-	void agregarProducto(Producto p) {
-		productos.push_back(p);
+	void agregarProductoFisico(ProductoFisico p) {
+		productosFisicos.push_back(p);
 	}
 	
-	void eliminarUltimoProducto() {
-		if (!productos.empty()) {
-			productos.pop_back();
-		}
+	void agregarProductoDigital(ProductoDigital p) {
+		productosDigitales.push_back(p);
 	}
 	
 	void mostrarCarrito() {
 		cout << "Productos en el carrito:\n";
-		for (auto p : productos) {
+		for (ProductoFisico p : productosFisicos) {
+			cout << "-Producto Físico-" << endl;
+			p.mostrarInformacion();
+			cout << "-------------------\n";
+		}
+		for (ProductoDigital p : productosDigitales) {
+			cout << "-Producto Digital-" << endl;
 			p.mostrarInformacion();
 			cout << "-------------------\n";
 		}
 	}
 	
-	vector<Producto> obtenerProductos() {
-		return productos;
+	vector<Producto> obtenerTodosLosProductos() {
+		vector<Producto> todos;
+		for (ProductoFisico p : productosFisicos) todos.push_back(p);
+		for (ProductoDigital p : productosDigitales) todos.push_back(p);
+		return todos;
 	}
 };
+
 // Clase Pedido-Antonella
 
 class Pedido {
@@ -177,4 +185,6 @@ public:
 		}
 		cout << "Total a pagar: $" << total << endl;
 	}
+
 };
+
