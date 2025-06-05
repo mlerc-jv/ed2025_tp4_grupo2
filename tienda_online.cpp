@@ -178,7 +178,7 @@ public:
 	
 	float calcularTotal() {
 		float suma = 0;
-		for (auto p : productos) {
+		for (Producto p : productos) {
 			suma += p.obtenerPrecio();
 		}
 		return suma;
@@ -188,40 +188,44 @@ public:
 		cout << "\nResumen del pedido:\n";
 		cliente.mostrarCliente();
 		cout << "\nProductos comprados:\n";
-		for (auto p : productos) {
+		for (Producto p : productos) {
 			p.mostrarInformacion();
 			cout << "-------------------\n";
 		}
 		cout << "Total a pagar: $" << total << endl;
 	}
+
 };
-//-
+
 //main-Antonella
 
 
 int main() {
 	
-	ProductoFisico prod1("Notebook",93000.0, 101, 5, 2.5);
-	ProductoFisico prod2("Mouse", 12350.0, 102, 20, 0.2);
+	ProductoFisico prod1("Notebook",93000.0, 101, 23, 1.8);
+	ProductoFisico prod2("Mouse", 12350.0, 102, 17, 0.138);
 	
 	
-	ProductoDigital prod3("App de peliculas", 10.0, 201, 999, 50, "PDF");
+	ProductoDigital prod3("App de peliculas", 3246.0, 305, 9, 50, "APK");
+	ProductoDigital prod4 ("Curso de ventas - online", 48500 , 567, 8 , 34, "HTML");
 	
 	Cliente cliente("Valentina", 13);
 	
 	Carrito carrito;
-	carrito.agregarProducto(prod1);
-	carrito.agregarProducto(prod2);
-	carrito.agregarProducto(prod3); 
+	carrito.agregarProductoFisico(prod1);
+	carrito.agregarProductoFisico(prod2);
+	carrito.agregarProductoDigital(prod3);
+	carrito.agregarProductoDigital(prod4);
+	
 	
 	carrito.mostrarCarrito();
 	
-	Pedido pedido(cliente, carrito.obtenerProductos());
+	Pedido pedido(cliente, carrito.obtenerTodosLosProductos());
 	
-	cliente.agregarCompra("Notebook, Mouse, Archivo de películas (links)");
+	
+	cliente.agregarCompra("Notebook, Mouse, App de peliculas,");
 	
 	pedido.mostrarResumen();
 	
 	return 0;
 }
->>>>>>> 4e0e196e2c152381f931239b19043b15cdddb9de
