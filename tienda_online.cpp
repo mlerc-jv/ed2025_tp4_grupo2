@@ -231,33 +231,61 @@ ProductoDigital* buscarDigital(int codigo) {
 
 //main-Antonella
 
-
 int main() {
-	
-	ProductoFisico prod1("Notebook",93000.0, 101, 23, 1.8);
-	ProductoFisico prod2("Mouse", 12350.0, 102, 17, 0.138);
-	
-	
-	ProductoDigital prod3("App de peliculas", 3246.0, 305, 9, 50, "APK");
-	ProductoDigital prod4 ("Curso de ventas - online", 48500 , 567, 8 , 34, "HTML");
-	
 	Cliente cliente("Valentina", 13);
-	
 	Carrito carrito;
-	carrito.agregarProductoFisico(prod1);
-	carrito.agregarProductoFisico(prod2);
-	carrito.agregarProductoDigital(prod3);
-	carrito.agregarProductoDigital(prod4);
-	
-	
-	carrito.mostrarCarrito();
-	
-	Pedido pedido(cliente, carrito.obtenerTodosLosProductos());
-	
-	
-	cliente.agregarCompra("Notebook, Mouse, App de peliculas,");
-	
-	pedido.mostrarResumen();
-	
+	bool salir = false;
+	while (!salir) {
+		cout << "\n--- MENU ---\n";
+		cout << "1. Ver productos disponibles\n";
+		cout << "2. Agregar producto al carrito\n";
+		cout << "3. Eliminar producto del carrito\n";
+		cout << "4. Ver productos en el carrito\n";
+		cout << "5. Confirmar pedido\n";
+		cout << "6. Salir\n";
+		cout << "Seleccione una opción: ";
+		int opcion, codigo;
+		cin >> opcion;
+		
+		switch (opcion) {
+		case 1:
+			mostrarProductosDisponibles();
+			break;
+		case 2:
+			cout << "Ingrese código del producto a agregar: ";
+			cin >> codigo;
+			if (auto* pf = buscarFisico(codigo))
+				carrito.agregarProductoFisico(*pf);
+			else if (auto* pd = buscarDigital(codigo))
+				carrito.agregarProductoDigital(*pd);
+			else
+				cout << "Código no encontrado.\n";
+			break;
+		case 3:
+			cout << "Ingrese código del producto a eliminar: ";
+			cin >> codigo;
+			carrito.eliminarProductoPorCodigo(codigo);
+			break;
+		case 4:
+			carrito.mostrarCarrito();
+			break;
+		case 5: {
+			vector<Producto> productos = carrito.obtenerTodosLosProductos();
+			if (productos.empty()) {
+				cout << "El carrito está vacío.\n";
+			} else {
+				Pedido pedido(cliente, productos);
+				cliente.agregarCompra("Pedido confirmado");
+				pedido.mostrarResumen();
+			}
+			break;
+		}
+		case 6:
+			salir = true;
+			break;
+		default:
+			cout << "Opción no válida.\n";
+		}
+	}
 	return 0;
 }
