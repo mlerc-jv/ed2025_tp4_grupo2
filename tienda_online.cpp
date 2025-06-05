@@ -160,13 +160,11 @@ private:
 	Cliente cliente;
 	vector<Producto> productos;
 	float total;
-	
 public:
 	Pedido(Cliente cliente, vector<Producto> productos)
 		: cliente(cliente), productos(productos) {
 		total = calcularTotal();
 	}
-	
 	float calcularTotal() {
 		float suma = 0;
 		for (Producto p : productos) {
@@ -174,7 +172,6 @@ public:
 		}
 		return suma;
 	}
-	
 	void mostrarResumen() {
 		cout << "\nResumen del pedido:\n";
 		cliente.mostrarCliente();
@@ -185,8 +182,43 @@ public:
 		}
 		cout << "Total a pagar: $" << total << endl;
 	}
-
 };
+
+// Productos disponibles
+vector<ProductoFisico> productosFisicos = {
+	ProductoFisico("Notebook", 93000.0, 101, 23, 1.8),
+		ProductoFisico("Mouse", 12350.0, 102, 17, 0.138)
+};
+
+vector<ProductoDigital> productosDigitales = {
+	ProductoDigital("App de peliculas", 3246.0, 305, 9, 50, "APK"),
+		ProductoDigital("Curso de ventas - online", 48500 , 567, 8 , 34, "HTML")
+};
+
+void mostrarProductosDisponibles() {
+	cout << "\n-- Productos Físicos Disponibles --\n";
+	for (auto& p : productosFisicos) {
+		p.mostrarInformacion();
+		cout << "-------------------\n";
+	}
+	cout << "-- Productos Digitales Disponibles --\n";
+	for (auto& p : productosDigitales) {
+		p.mostrarInformacion();
+		cout << "-------------------\n";
+	}
+}
+
+ProductoFisico* buscarFisico(int codigo) {
+	for (auto& p : productosFisicos)
+		if (p.obtenerCodigo() == codigo) return &p;
+	return nullptr;
+}
+
+ProductoDigital* buscarDigital(int codigo) {
+	for (auto& p : productosDigitales)
+		if (p.obtenerCodigo() == codigo) return &p;
+	return nullptr;
+}
 
 //main-Antonella
 
