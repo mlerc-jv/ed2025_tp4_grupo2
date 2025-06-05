@@ -115,22 +115,32 @@ public:
 	string obtenerHistorial() { return historialCompras; }
 };
 
-// Clase Carrito -Jimena
-
+// Clase Carrito -Jime
 class Carrito {
 private:
 	vector<ProductoFisico> productosFisicos;
 	vector<ProductoDigital> productosDigitales;
-	
 public:
 	void agregarProductoFisico(ProductoFisico p) {
 		productosFisicos.push_back(p);
 	}
-	
 	void agregarProductoDigital(ProductoDigital p) {
 		productosDigitales.push_back(p);
 	}
-	
+	void eliminarProductoPorCodigo(int codigo) {
+		for (int i = 0; i < productosFisicos.size(); ++i) {
+			if (productosFisicos[i].obtenerCodigo() == codigo) {
+				productosFisicos.erase(productosFisicos.begin() + i);
+				return;
+			}
+		}
+		for (int i = 0; i < productosDigitales.size(); ++i) {
+			if (productosDigitales[i].obtenerCodigo() == codigo) {
+				productosDigitales.erase(productosDigitales.begin() + i);
+				return;
+			}
+		}
+	}
 	void mostrarCarrito() {
 		cout << "Productos en el carrito:\n";
 		for (ProductoFisico p : productosFisicos) {
@@ -144,7 +154,6 @@ public:
 			cout << "-------------------\n";
 		}
 	}
-	
 	vector<Producto> obtenerTodosLosProductos() {
 		vector<Producto> todos;
 		for (ProductoFisico p : productosFisicos) todos.push_back(p);
